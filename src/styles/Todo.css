@@ -8,6 +8,13 @@
     height: 4rem;
     overflow: auto;
     margin-bottom: 1rem;
+    transition: opacity 0.6s;
+    
+    
+}
+.fadingStyle{
+
+    opacity: 0;
 }
 
 .Completed{
