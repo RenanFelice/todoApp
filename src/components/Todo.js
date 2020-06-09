@@ -14,7 +14,7 @@ const Todo = (props) => {
         setFading(' fadingStyle')
         setTimeout(() => {
             dispatch({ type: 'REMOVE_TODO', id })
-        },600)
+        },300)
         
     }
 
