@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import styles from './Todo.module.css'
 import cx from 'classnames'
 import { TodosContext } from '../context/todosContext'
@@ -12,12 +12,14 @@ const Todo = ({ todo }) => {
     const [fadeOut, setFadeOut] = useState(false)
     const [isEditing, setIsEditing] = useState(false)
     const [editInputText, setEditInputText] = useState(todo.task)
+    const editInputEl = useRef(null)
 
     const handleSubmit = e => {
         e.preventDefault()
         editTodo(todo.id, editInputText)
         setIsEditing(false)
     }
+    
 
     return (
         <div className={cx(styles.todo, { [styles.fadeOut]: fadeOut })}>
@@ -28,7 +30,7 @@ const Todo = ({ todo }) => {
                             handleSubmit(e)
                         }}>
                         <input className={styles.editInpu}
-
+                            ref={editInputEl}
                             value={editInputText}
                             required
                             maxLength={30}
@@ -70,7 +72,10 @@ const Todo = ({ todo }) => {
                                 }, 400);
                             }}><i className="fas fa-trash"></i></span>
                         <span className={styles.editBtn}
-                            onClick={e => setIsEditing(true)}
+                            onClick={ async e => {
+                                await setIsEditing(true)
+                                editInputEl.current.focus()
+                            }}
                         ><i className="fas fa-edit"></i></span>
                     </div>
                 </>
