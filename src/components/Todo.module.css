@@ -23,7 +23,7 @@
 .iconsContainer{
     position: absolute;
     right: 15px;
-    width: 40px;
+    width: 60px;
     display: none;
 }
 
@@ -33,12 +33,14 @@
 }
 
 .deleteBtn{
+    font-size: 1.3rem;
     cursor: pointer;
     color: rgb(102, 0, 0);
     transition: all 0.1s linear;
 }
 
 .editBtn{
+    font-size: 1.3rem;
     cursor: pointer;
     color: rgb(38, 163, 48);
     transition: all 0.1s linear;
@@ -74,20 +76,22 @@
 .editIcons{
     display: flex;
     position: absolute;
-    right: 19px;
-    width: 40px;
+    right: 16px;
+    width: 50px;
     justify-content: space-between;
 }
 
 .confirmEdit{
+    cursor: pointer;
     color: green;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     transition: all 0.1s linear;
 }
 
 .cancelEdit{
+    cursor: pointer;
     color: red;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     transition: all 0.1s linear;
 }
 

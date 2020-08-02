@@ -1,6 +1,7 @@
 import React, { useState, useContext, useRef } from 'react'
 import styles from './Todo.module.css'
 import cx from 'classnames'
+import { Tooltip } from '@material-ui/core'
 import { TodosContext } from '../context/todosContext'
 
 
@@ -19,7 +20,7 @@ const Todo = ({ todo }) => {
         editTodo(todo.id, editInputText)
         setIsEditing(false)
     }
-    
+
 
     return (
         <div className={cx(styles.todo, { [styles.fadeOut]: fadeOut })}>
@@ -40,17 +41,21 @@ const Todo = ({ todo }) => {
                         />
                     </form>
                     <div className={styles.editIcons}>
-                        <span className={styles.confirmEdit}
-                            onClick={e => {
-                                handleSubmit(e)
-                            }}
-                        ><i className="fas fa-check"></i></span>
-                        <span className={styles.cancelEdit}
-                            onClick={e => {
-                                setEditInputText(todo.task)
-                                setIsEditing(false)
-                            }}
-                        ><i className="fas fa-times"></i></span>
+                        <Tooltip title="Confirmar">
+                            <span className={styles.confirmEdit}
+                                onClick={e => {
+                                    handleSubmit(e)
+                                }}
+                            ><i className="fas fa-check"></i></span>
+                        </Tooltip>
+                        <Tooltip title="Cancelar">
+                            <span className={styles.cancelEdit}
+                                onClick={e => {
+                                    setEditInputText(todo.task)
+                                    setIsEditing(false)
+                                }}
+                            ><i className="fas fa-times"></i></span>
+                        </Tooltip>
                     </div>
                 </>
                 :
@@ -63,20 +68,24 @@ const Todo = ({ todo }) => {
                         className={cx(styles.task, { [styles.finished]: finished })}>{todo.task}
                     </div>
                     <div className={styles.iconsContainer}>
-                        <span className={styles.deleteBtn}
-                            onClick={e => {
-                                e.stopPropagation()
-                                setFadeOut(!fadeOut)
-                                setTimeout(() => {
-                                    deleteTodo(todo.id)
-                                }, 400);
-                            }}><i className="fas fa-trash"></i></span>
-                        <span className={styles.editBtn}
-                            onClick={ async e => {
-                                await setIsEditing(true)
-                                editInputEl.current.focus()
-                            }}
-                        ><i className="fas fa-edit"></i></span>
+                        <Tooltip title="Apagar">
+                            <span className={styles.deleteBtn}
+                                onClick={e => {
+                                    e.stopPropagation()
+                                    setFadeOut(!fadeOut)
+                                    setTimeout(() => {
+                                        deleteTodo(todo.id)
+                                    }, 400);
+                                }}><i className="fas fa-trash"></i></span>
+                        </Tooltip>
+                        <Tooltip title="Editar">
+                            <span className={styles.editBtn}
+                                onClick={async e => {
+                                    await setIsEditing(true)
+                                    editInputEl.current.focus()
+                                }}
+                            ><i className="fas fa-edit"></i></span>
+                        </Tooltip>
                     </div>
                 </>
             }
