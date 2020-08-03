@@ -20,7 +20,7 @@ const Header = () => {
                 }
                 }>
                 <input
-                    placeholder={'Insira a tarefa'}
+                    placeholder={'Adicionar tarefa...'}
                     maxLength={30}
                     value={textInput}
                     required

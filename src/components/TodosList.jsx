@@ -5,13 +5,13 @@ import styles from './TodosList.module.css'
 
 const TodosList = () => {
     const { todos } = useContext(TodosContext)
-    console.log('todolist re rendered')
+
 
 
     if (todos.length) {
         return <div className={styles.todoList}>{todos.map(todo => <Todo key={todo.id} todo={todo}/>)}</div>
     } else {
-        return <h1>no todos yet</h1>
+        return <h1 className={styles.noTodos}>Sem tarefas <span><i className="far fa-smile-beam"></i></span></h1>
     }
 }
 
